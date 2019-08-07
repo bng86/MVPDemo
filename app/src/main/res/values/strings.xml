@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">KotlinMVPDemo</string>
+    <string name="add_error">Input Cannot Empty!</string>
+</resources>
