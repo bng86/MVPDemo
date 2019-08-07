@@ -1,24 +1,22 @@
-package keith.kotlinmvpdemo.config.Model.repository
+package keith.kotlinmvpdemo.model
 
 import android.content.Context
 import keith.kotlinmvpdemo.config.ConfigValue
-import keith.kotlinmvpdemo.config.Model.Cache.PreferenceFactory
+import keith.kotlinmvpdemo.model.cache.PreferenceFactory
+import keith.kotlinmvpdemo.presenter.calc.CalculateBridge
 
-class CacheRepository(context: Context) {
+class CalculateRepository(context: Context) {
+
     private val m_ADD_LAST_RESULT_KEY = "ADD_RESULT"
 
     private var mContext: Context = context
     private var mAddResult by PreferenceFactory(m_ADD_LAST_RESULT_KEY, ConfigValue.ADD_NUMBER_RESULT_DEFAULT, mContext)
 
-    fun setAddResult(x: Long) {
-        mAddResult = x
+    fun setLastData(data: Long) {
+        mAddResult = data
     }
 
-    fun getAddLastResult(): Long {
+    fun getLastData(): Long {
         return mAddResult
-    }
-
-    fun getAddLastResultKeyStr(): String {
-        return m_ADD_LAST_RESULT_KEY
     }
 }

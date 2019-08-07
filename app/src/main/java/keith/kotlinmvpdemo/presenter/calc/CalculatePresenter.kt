@@ -1,11 +1,10 @@
 package keith.kotlinmvpdemo.presenter.calc
 
-import keith.kotlinmvpdemo.config.Model.repository.CacheRepository
+import keith.kotlinmvpdemo.model.CalculateModel
 
-class CalculatePresenter(cache: CacheRepository, view: CalculateBridge.View) : CalculateBridge.Presenter {
+class CalculatePresenter(model: CalculateModel, view: CalculateBridge.View) : CalculateBridge.Presenter {
     private val mView = view
-
-    private var mCacheTools = cache
+    private val mModel = model
 
     override fun calc(x: String, y: String) {
         if (x == "" || y == "") {
@@ -15,12 +14,12 @@ class CalculatePresenter(cache: CacheRepository, view: CalculateBridge.View) : C
 
             mView.addSuccess(result.toString())
 
-            mCacheTools.setAddResult(result)
+            mModel.setLastData(result)
         }
     }
 
     override fun initData() {
-        val lastResult = mCacheTools.getAddLastResult()
+        val lastResult = mModel.getLastData()
         mView.showLastResult(lastResult.toString())
     }
 

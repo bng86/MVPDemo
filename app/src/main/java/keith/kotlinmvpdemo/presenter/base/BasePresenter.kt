@@ -1,4 +1,4 @@
 package keith.kotlinmvpdemo.presenter.base
 
-interface BasePresenter {
+interface BasePresenter<T>{
 }

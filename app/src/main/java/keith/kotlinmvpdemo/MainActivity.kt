@@ -4,7 +4,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import keith.kotlinmvpdemo.config.Model.repository.CacheRepository
+import keith.kotlinmvpdemo.model.CalculateModel
+import keith.kotlinmvpdemo.model.CalculateRepository
 import keith.kotlinmvpdemo.presenter.calc.CalculateBridge
 import keith.kotlinmvpdemo.presenter.calc.CalculatePresenter
 
@@ -34,7 +35,7 @@ class MainActivity : BasicActivity(), CalculateBridge.View {
         wEditTwo = findViewById(R.id.main_edit_two)
 
         //You Can Load DI Library
-        mCalcPresenter = CalculatePresenter(CacheRepository(mContext), this)
+        mCalcPresenter = CalculatePresenter(CalculateModel(CalculateRepository(mContext)), this)
     }
 
     override fun setViewValue() {

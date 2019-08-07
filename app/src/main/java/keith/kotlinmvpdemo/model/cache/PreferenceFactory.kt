@@ -1,4 +1,4 @@
-package keith.kotlinmvpdemo.config.Model.Cache
+package keith.kotlinmvpdemo.model.cache
 
 import android.content.Context
 import android.content.SharedPreferences
