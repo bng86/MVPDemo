@@ -1,22 +1,14 @@
 package keith.kotlinmvpdemo.model
 
-import android.content.Context
-import keith.kotlinmvpdemo.config.ConfigValue
-import keith.kotlinmvpdemo.model.cache.PreferenceFactory
-import keith.kotlinmvpdemo.presenter.calc.CalculateBridge
+import keith.kotlinmvpdemo.model.cache.LocalStorage
 
-class CalculateRepository(context: Context) {
-
-    private val m_ADD_LAST_RESULT_KEY = "ADD_RESULT"
-
-    private var mContext: Context = context
-    private var mAddResult by PreferenceFactory(m_ADD_LAST_RESULT_KEY, ConfigValue.ADD_NUMBER_RESULT_DEFAULT, mContext)
+class CalculateRepository(private val localStorage: LocalStorage) {
 
     fun setLastData(data: Long) {
-        mAddResult = data
+        localStorage.addResult = data
     }
 
     fun getLastData(): Long {
-        return mAddResult
+        return localStorage.addResult
     }
 }

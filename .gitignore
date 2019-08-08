@@ -1,3 +1,4 @@
 local.properties
 .gradle/*
 app/app.iml
+.DS_Store

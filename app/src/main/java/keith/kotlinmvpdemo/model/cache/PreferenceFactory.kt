@@ -4,9 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import kotlin.reflect.KProperty
 
-class PreferenceFactory<T>(val key: String, val default: T, context: Context) {
+class PreferenceFactory<T>(
+        private val key: String,
+        private val default: T, context: Context) {
 
-    val prefs: SharedPreferences by lazy { context.getSharedPreferences(key, Context.MODE_PRIVATE) }
+    private val prefs: SharedPreferences by lazy { context.getSharedPreferences(key, Context.MODE_PRIVATE) }
 
     operator fun getValue(thisRef: Any?, property: KProperty<*>): T {
         return getSharedPreferences(key, default)

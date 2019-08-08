@@ -6,6 +6,7 @@ import android.widget.EditText
 import android.widget.TextView
 import keith.kotlinmvpdemo.model.CalculateModel
 import keith.kotlinmvpdemo.model.CalculateRepository
+import keith.kotlinmvpdemo.model.cache.LocalStorage
 import keith.kotlinmvpdemo.presenter.calc.CalculateBridge
 import keith.kotlinmvpdemo.presenter.calc.CalculatePresenter
 
@@ -35,7 +36,7 @@ class MainActivity : BasicActivity(), CalculateBridge.View {
         wEditTwo = findViewById(R.id.main_edit_two)
 
         //You Can Load DI Library
-        mCalcPresenter = CalculatePresenter(CalculateModel(CalculateRepository(mContext)), this)
+        mCalcPresenter = CalculatePresenter(CalculateModel(CalculateRepository(LocalStorage(this))), this)
     }
 
     override fun setViewValue() {

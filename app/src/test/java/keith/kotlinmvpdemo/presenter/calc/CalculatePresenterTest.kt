@@ -1,61 +1,48 @@
 package keith.kotlinmvpdemo.presenter.calc
 
-import android.content.Context
 import keith.kotlinmvpdemo.model.CalculateModel
-import keith.kotlinmvpdemo.model.CalculateRepository
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 
-
-//@RunWith(PowerMockRunner::class)
 
 class CalculatePresenterTest {
 
-    private lateinit var mView: CalculateBridge.View
-    private lateinit var mContext: Context
+    private lateinit var presenter: CalculatePresenter
+    private val view: CalculateBridge.View = mock(CalculateBridge.View::class.java)
+    private val model: CalculateModel = mock(CalculateModel::class.java)
 
     @Before
     fun setup() {
-        mView = Mockito.mock<CalculateBridge.View>(CalculateBridge.View::class.java)
-        mContext = Mockito.mock(Context::class.java)
+        presenter = CalculatePresenter(model, view)
     }
 
     @Test
     fun `two number input null`() {
-        //init
-        val mCalcPresenter = CalculatePresenter(CalculateModel(CalculateRepository(mContext)), mView)
-
-        mCalcPresenter.calc("", "")
-        Mockito.verify<CalculateBridge.View>(mView).addError()
+        presenter.calc("", "")
+        verify(view).addError()
     }
 
     @Test
     fun `number one input null`() {
-        //init
-        val mCalcPresenter = CalculatePresenter(CalculateModel(CalculateRepository(mContext)), mView)
-
-        mCalcPresenter.calc("10", "")
-        Mockito.verify<CalculateBridge.View>(mView).addError()
+        presenter.calc("10", "")
+        verify(view).addError()
     }
 
     @Test
     fun `number two input null`() {
-        //init
-        val mCalcPresenter = CalculatePresenter(CalculateModel(CalculateRepository(mContext)), mView)
-
-        mCalcPresenter.calc("", "10")
-        Mockito.verify<CalculateBridge.View>(mView).addError()
+        presenter.calc("", "10")
+        verify(view).addError()
     }
 
     @Test
     fun `two input has data`() {
         //init
         val successAns = "20"
-        val mCalcPresenter = CalculatePresenter(CalculateModel(CalculateRepository(mContext)), mView)
-
-        mCalcPresenter.calc("10", "10")
-        Mockito.verify<CalculateBridge.View>(mView).addSuccess(successAns)
+        presenter.calc("10", "10")
+        verify(view).addSuccess(successAns)
+        verify(model).setLastData(successAns.toLong())
     }
 
 }
